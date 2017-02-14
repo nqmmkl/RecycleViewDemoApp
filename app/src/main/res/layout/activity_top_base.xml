@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/top_base_layout_ll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.uichange.recycleviewdemo.base.TopBaseActivity">
+
+    <RelativeLayout
+        android:id="@+id/top_base_layout_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/titlebar">
+        <LinearLayout
+            android:id="@+id/top_base_left_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/px_30"
+            android:layout_marginRight="@dimen/px_15"
+            android:layout_centerVertical="true" >
+
+            <ImageView
+                android:id="@+id/top_base_leftImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/back"
+                android:scaleType="centerInside"
+                />
+            <TextView
+                android:id="@+id/top_base_leftText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/px_15"
+                android:text="旅行者"
+                android:textSize="@dimen/px_30"
+                android:textColor="@color/color_white"
+                />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/top_base_centerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxEms="8"
+            android:singleLine="true"
+            android:text="中间"
+            android:textSize="@dimen/px_50"
+            android:textColor="@color/color_white"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center" />
+
+        <ImageView
+            android:id="@+id/top_base_rightImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/px_30"
+            android:background="@drawable/dropdown"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+</LinearLayout>
