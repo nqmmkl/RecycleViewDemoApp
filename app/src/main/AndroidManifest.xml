@@ -17,7 +17,11 @@
         </activity>
         <activity android:name=".base.TopBaseActivity" />
         <activity android:name=".recycleView.RecycleViewActivity" />
-        <activity android:name=".xRecycleView.XRecycleViewActivity"></activity>
+        <activity android:name=".xRecycleView.XRecycleViewActivity" />
+        <activity android:name=".recycleView.Linear_V_Activity" />
+        <activity android:name=".recycleView.Linear_H_Activity" />
+        <activity android:name=".recycleView.Grid_Activity" />
+        <activity android:name=".recycleView.Staggered_Activity"></activity>
     </application>
 
 </manifest>

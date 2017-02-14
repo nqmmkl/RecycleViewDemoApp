@@ -11,6 +11,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.uichange.recycleviewdemo.R;
+import com.uichange.recycleviewdemo.recycleView.RecycleViewActivity;
+import com.uichange.recycleviewdemo.utils.ActivityUtils;
 
 public abstract class TopBaseActivity extends FragmentActivity {
 
@@ -65,7 +67,7 @@ public abstract class TopBaseActivity extends FragmentActivity {
         top_base_left_ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                ActivityUtils.finishActivity(TopBaseActivity.this);
             }
         });
 
@@ -75,6 +77,9 @@ public abstract class TopBaseActivity extends FragmentActivity {
     public abstract String setCenterText();
     public abstract View setChildView(LayoutInflater layoutInflater);
 
+    public RelativeLayout getTop_base_layout_rl(){
+        return top_base_layout_rl;
+    }
     public LinearLayout getTop_base_left_ll(){
         return top_base_left_ll;
     }

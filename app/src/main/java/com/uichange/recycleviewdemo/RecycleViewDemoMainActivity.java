@@ -17,6 +17,8 @@ public class RecycleViewDemoMainActivity extends TopBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_recycle_view_demo_main);
+
+        getTop_base_layout_rl().setVisibility(View.GONE);
     }
 
     @Override
