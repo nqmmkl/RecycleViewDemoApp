@@ -15,7 +15,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".base.TopBaseActivity" />
         <activity android:name=".recycleView.RecycleViewActivity" />
         <activity android:name=".xRecycleView.XRecycleViewActivity" />
         <activity android:name=".recycleView.Linear_V_Activity" />

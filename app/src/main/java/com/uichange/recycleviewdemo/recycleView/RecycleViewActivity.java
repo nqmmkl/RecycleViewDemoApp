@@ -33,7 +33,7 @@ public class RecycleViewActivity extends TopBaseActivity {
 
     @Override
     public String setCenterText() {
-        return null;
+        return "RecycleView_Test";
     }
 
     @Override

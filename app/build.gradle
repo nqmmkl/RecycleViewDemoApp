@@ -20,7 +20,7 @@ android {
 
     sourceSets {
         main {
-            res.srcDirs = ['src/main/res','src/main/res-mode/public_icon']
+            res.srcDirs = ['src/main/res','src/main/res-mode/public_icon','src/main/res-mode/recyclerview_pic']
         }
     }
 }

@@ -11,7 +11,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.uichange.recycleviewdemo.R;
-import com.uichange.recycleviewdemo.recycleView.RecycleViewActivity;
 import com.uichange.recycleviewdemo.utils.ActivityUtils;
 
 public abstract class TopBaseActivity extends FragmentActivity {
@@ -70,6 +69,8 @@ public abstract class TopBaseActivity extends FragmentActivity {
                 ActivityUtils.finishActivity(TopBaseActivity.this);
             }
         });
+
+        top_base_rightImg.setVisibility(View.GONE);
 
     }
 
