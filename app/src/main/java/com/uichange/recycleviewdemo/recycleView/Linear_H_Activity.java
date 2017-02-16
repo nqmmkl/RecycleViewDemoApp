@@ -3,15 +3,18 @@ package com.uichange.recycleviewdemo.recycleView;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.uichange.recycleviewdemo.R;
 import com.uichange.recycleviewdemo.base.TopBaseActivity;
 import com.uichange.recycleviewdemo.javabean.SampleShow;
+import com.uichange.recycleviewdemo.utils.PhoneUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +22,14 @@ import java.util.List;
 public class Linear_H_Activity extends TopBaseActivity {
     private RecyclerView linear_h_recyclrView;
     private List<SampleShow> linear_h_list;
+    private PhoneUtils phoneUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_linear__h_);
+
+        phoneUtils=new PhoneUtils(Linear_H_Activity.this);
 
         initLists();
 
@@ -97,6 +103,14 @@ public class Linear_H_Activity extends TopBaseActivity {
         @Override
         public void onBindViewHolder(MyViewHolder holder, int position) {
             SampleShow sampleShow=linear_h_list.get(position);
+            LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(phoneUtils.get720WScale(200), ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.topMargin=phoneUtils.get720WScale(30);
+//            params.gravity= Gravity.CENTER;  //此处相当于布局文件中的Android:layout_gravity属性
+            holder.linear_h_text.setLayoutParams(params);
+
+            holder.linear_h_text.setGravity(Gravity.CENTER); //此处相当于布局文件中的Android：gravity属性
+            holder.linear_h_text.setTextSize(phoneUtils.px2sp(phoneUtils.get720WScale(30)));
+
             holder.linear_h_img.setImageResource(sampleShow.getResId());
             holder.linear_h_text.setText(sampleShow.getTextShow());
 
@@ -108,11 +122,13 @@ public class Linear_H_Activity extends TopBaseActivity {
         }
 
         public class MyViewHolder extends RecyclerView.ViewHolder{
+            LinearLayout linear_h_ll;
             ImageView linear_h_img;
             TextView linear_h_text;
 
             public MyViewHolder(View itemView) {
                 super(itemView);
+                linear_h_ll= (LinearLayout) itemView.findViewById(R.id.linear_h_ll);
                 linear_h_img= (ImageView) itemView.findViewById(R.id.linear_h_img);
                 linear_h_text= (TextView) itemView.findViewById(R.id.linear_h_text);
             }

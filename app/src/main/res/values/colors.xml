@@ -7,4 +7,5 @@
     <color name="orange_normal">#e64303</color>
     <color name="orange">#da4003</color>
     <color name="text_color">#191c38</color>
+    <color name="gray">#c8c0c0</color>
 </resources>
