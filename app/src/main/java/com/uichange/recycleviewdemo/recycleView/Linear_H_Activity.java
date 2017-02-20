@@ -1,6 +1,7 @@
 package com.uichange.recycleviewdemo.recycleView;
 
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.uichange.recycleviewdemo.R;
 import com.uichange.recycleviewdemo.base.TopBaseActivity;
 import com.uichange.recycleviewdemo.javabean.SampleShow;
+import com.uichange.recycleviewdemo.recycleView.ItemDecoration.ItemDecor_R;
 import com.uichange.recycleviewdemo.utils.PhoneUtils;
 
 import java.util.ArrayList;
@@ -23,6 +25,8 @@ public class Linear_H_Activity extends TopBaseActivity {
     private RecyclerView linear_h_recyclrView;
     private List<SampleShow> linear_h_list;
     private PhoneUtils phoneUtils;
+    private Linear_H_Adapter adapter;
+    private ImageView show_img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +40,11 @@ public class Linear_H_Activity extends TopBaseActivity {
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         linear_h_recyclrView.setLayoutManager(linearLayoutManager);
+        linear_h_recyclrView.addItemDecoration(new ItemDecor_R(this,LinearLayoutManager.HORIZONTAL));
 
-        Linear_H_Adapter adapter=new Linear_H_Adapter();
+        linear_h_recyclrView.setItemAnimator(new DefaultItemAnimator());
+
+        adapter=new Linear_H_Adapter();
         linear_h_recyclrView.setAdapter(adapter);
 
     }
@@ -49,7 +56,7 @@ public class Linear_H_Activity extends TopBaseActivity {
 
     @Override
     public String setCenterText() {
-        return null;
+        return "横向布局";
     }
 
     @Override
@@ -61,6 +68,7 @@ public class Linear_H_Activity extends TopBaseActivity {
 
     private void initView(View view){
         linear_h_recyclrView= (RecyclerView) view.findViewById(R.id.linear_h_recyclrView);
+        show_img= (ImageView) view.findViewById(R.id.show_img);
     }
 
 
@@ -101,8 +109,8 @@ public class Linear_H_Activity extends TopBaseActivity {
         }
 
         @Override
-        public void onBindViewHolder(MyViewHolder holder, int position) {
-            SampleShow sampleShow=linear_h_list.get(position);
+        public void onBindViewHolder(MyViewHolder holder, final int position) {
+            final SampleShow sampleShow=linear_h_list.get(position);
             LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(phoneUtils.get720WScale(200), ViewGroup.LayoutParams.WRAP_CONTENT);
             params.topMargin=phoneUtils.get720WScale(30);
 //            params.gravity= Gravity.CENTER;  //此处相当于布局文件中的Android:layout_gravity属性
@@ -113,6 +121,22 @@ public class Linear_H_Activity extends TopBaseActivity {
 
             holder.linear_h_img.setImageResource(sampleShow.getResId());
             holder.linear_h_text.setText(sampleShow.getTextShow());
+
+            holder.linear_h_img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    addData(position);
+                    show_img.setImageResource(sampleShow.getResId());
+                }
+            });
+
+            holder.linear_h_img.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    removeData(position);
+                    return true;
+                }
+            });
 
         }
 
@@ -133,5 +157,20 @@ public class Linear_H_Activity extends TopBaseActivity {
                 linear_h_text= (TextView) itemView.findViewById(R.id.linear_h_text);
             }
         }
+    }
+
+    public void addData(int position){
+        SampleShow sample=new SampleShow(R.drawable.buchiyu,"王建凯");
+        linear_h_list.add(position,sample);
+        adapter.notifyItemInserted(position);
+        adapter.notifyItemRangeChanged(position,linear_h_list.size());
+    }
+
+    public void removeData(int position){
+        SampleShow sample=new SampleShow(R.drawable.buchiyu,"王建凯");
+        linear_h_list.remove(position);
+        adapter.notifyItemRemoved(position);
+        adapter.notifyItemRangeChanged(position,linear_h_list.size());
+
     }
 }

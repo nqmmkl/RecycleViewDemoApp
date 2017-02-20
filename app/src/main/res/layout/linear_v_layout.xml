@@ -12,6 +12,7 @@
         android:layout_width="@dimen/px_138"
         android:layout_height="@dimen/px_138"
         android:background="@drawable/pic_default"
+        android:layout_gravity="center_vertical"
         android:layout_marginLeft="@dimen/px_15"/>
     <TextView
         android:id="@+id/linear_v_text"
@@ -20,6 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:text="名字..."
+        android:maxLines="1"
+        android:ellipsize="end"
         android:textColor="@color/text_color"
         android:textSize="@dimen/px_50"/>
 

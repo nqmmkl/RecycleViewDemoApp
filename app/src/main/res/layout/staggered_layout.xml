@@ -2,17 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/gray">
     <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/staggered_img"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/staggered_default"/>
+        android:layout_height="wrap_content"/>
     <LinearLayout
         android:id="@+id/staggered_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/staggered_item_bg">
         <ImageView
             android:id="@+id/staggered_ll_img"
             android:layout_width="@dimen/px_138"
@@ -25,6 +26,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
+            android:layout_marginLeft="@dimen/px_15"
+            android:layout_marginRight="@dimen/px_10"
             android:layout_marginTop="@dimen/px_15"
             android:layout_marginBottom="@dimen/px_30"
             android:text="名字..."

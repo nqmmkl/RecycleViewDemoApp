@@ -18,6 +18,7 @@ import com.uichange.recycleviewdemo.Constants;
 import com.uichange.recycleviewdemo.R;
 import com.uichange.recycleviewdemo.base.TopBaseActivity;
 import com.uichange.recycleviewdemo.javabean.SampleShow;
+import com.uichange.recycleviewdemo.recycleView.ItemDecoration.ItemDecor_grid;
 import com.uichange.recycleviewdemo.utils.CommonUtil;
 import com.uichange.recycleviewdemo.volley.MemoryBitmapCache;
 
@@ -29,6 +30,7 @@ public class Staggered_Activity extends TopBaseActivity {
     private List<String> urlList;
     private List<SampleShow> staggered_list;
     private int showType=1;  //0-网络请求   //1-本地图片
+    private StaggeredAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,9 @@ public class Staggered_Activity extends TopBaseActivity {
         StaggeredGridLayoutManager staggeredGridLayoutManager=new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL);
         staggered_recyclrview.setLayoutManager(staggeredGridLayoutManager);
 
-        StaggeredAdapter adapter=new StaggeredAdapter();
+        staggered_recyclrview.addItemDecoration(new ItemDecor_grid(this));
+
+        adapter=new StaggeredAdapter();
         staggered_recyclrview.setAdapter(adapter);
 
 
@@ -59,7 +63,7 @@ public class Staggered_Activity extends TopBaseActivity {
 
     @Override
     public String setCenterText() {
-        return null;
+        return "瀑布流布局";
     }
 
     @Override
@@ -83,23 +87,23 @@ public class Staggered_Activity extends TopBaseActivity {
                 urlList.add(Constants.imageUrls[i]);
             }
         }else if(showType==1){
-            for(int i=0;i<15;i++){
-                SampleShow sample0=new SampleShow(R.drawable.buchiyu, CommonUtil.getRandomLengthName("不吃鱼"));
+            for(int i=0;i<10;i++){
+                SampleShow sample0=new SampleShow(R.drawable.buchiyu, CommonUtil.getRandomLengthName("不吃鱼 "));
                 staggered_list.add(sample0);
 
-                SampleShow sample1=new SampleShow(R.drawable.chunlv,CommonUtil.getRandomLengthName("蠢驴"));
+                SampleShow sample1=new SampleShow(R.drawable.chunlv,CommonUtil.getRandomLengthName("蠢驴 "));
                 staggered_list.add(sample1);
 
                 SampleShow sample2=new SampleShow(R.drawable.everydaylove,CommonUtil.getRandomLengthName("每天都在谈恋爱"));
                 staggered_list.add(sample2);
 
-                SampleShow sample3=new SampleShow(R.drawable.jiuyue,CommonUtil.getRandomLengthName("九月"));
+                SampleShow sample3=new SampleShow(R.drawable.jiuyue,CommonUtil.getRandomLengthName("九月 "));
                 staggered_list.add(sample3);
 
-                SampleShow sample4=new SampleShow(R.drawable.jxiansen,CommonUtil.getRandomLengthName("j先生"));
+                SampleShow sample4=new SampleShow(R.drawable.jxiansen,CommonUtil.getRandomLengthName("j先生 "));
                 staggered_list.add(sample4);
 
-                SampleShow sample5=new SampleShow(R.drawable.lvxingzhe,CommonUtil.getRandomLengthName("旅行者"));
+                SampleShow sample5=new SampleShow(R.drawable.lvxingzhe,CommonUtil.getRandomLengthName("旅行者 "));
                 staggered_list.add(sample5);
             }
         }
@@ -136,16 +140,31 @@ public class Staggered_Activity extends TopBaseActivity {
         }
 
         @Override
-        public void onBindViewHolder(MyViewHolder holder, int position) {
+        public void onBindViewHolder(MyViewHolder holder, final int position) {
             if(showType==0){
                 holder.staggered_ll.setVisibility(View.GONE);
-                holder.staggered_img.setDefaultImageResId(R.drawable.staggered_default);
-                holder.staggered_img.setErrorImageResId(R.drawable.staggered_default);
+//                holder.staggered_img.setDefaultImageResId(R.drawable.staggered_default);
+//                holder.staggered_img.setErrorImageResId(R.drawable.staggered_default);
                 holder.staggered_img.setImageUrl(urlList.get(position),imageLoader);
             }else if(showType==1){
                 holder.staggered_img.setVisibility(View.GONE);
                 holder.staggered_ll_img.setImageResource(staggered_list.get(position).getResId());
                 holder.staggered_ll_text.setText(staggered_list.get(position).getTextShow());
+
+                holder.staggered_ll_img.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        addData(position);
+                    }
+                });
+
+                holder.staggered_ll_img.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        removeData(position);
+                        return true;
+                    }
+                });
             }
 
 
@@ -175,7 +194,23 @@ public class Staggered_Activity extends TopBaseActivity {
                 staggered_ll= (LinearLayout) itemView.findViewById(R.id.staggered_ll);
                 staggered_ll_img= (ImageView) itemView.findViewById(R.id.staggered_ll_img);
                 staggered_ll_text= (TextView) itemView.findViewById(R.id.staggered_ll_text);
+
             }
+        }
+
+        public void addData(int position){
+            SampleShow sample=new SampleShow(R.drawable.buchiyu,"王建凯");
+            staggered_list.add(position,sample);
+            adapter.notifyItemInserted(position);
+            adapter.notifyItemRangeChanged(position,staggered_list.size());
+        }
+
+        public void removeData(int position){
+            SampleShow sample=new SampleShow(R.drawable.buchiyu,"王建凯");
+            staggered_list.remove(position);
+            adapter.notifyItemRemoved(position);
+            adapter.notifyItemRangeChanged(position,staggered_list.size());
+
         }
     }
 }

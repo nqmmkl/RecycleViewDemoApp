@@ -4,6 +4,7 @@
     android:id="@+id/linear_h_ll"
     android:layout_width="@dimen/px_500"
     android:layout_height="wrap_content"
+    android:background="@color/gray"
     android:padding="@dimen/px_15">
     <ImageView
         android:id="@+id/linear_h_img"
@@ -23,7 +24,7 @@
         android:maxLines="1"
         android:maxEms="5"
         android:ellipsize="end"
-        android:textColor="@color/text_color"
-        android:textSize="@dimen/px_50"/>
+        android:textColor="@color/orange_normal"
+        android:textSize="@dimen/px_30"/>
 
 </LinearLayout>

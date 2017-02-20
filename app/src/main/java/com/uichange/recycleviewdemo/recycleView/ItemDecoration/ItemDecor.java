@@ -10,7 +10,7 @@ import android.view.View;
 /**
  * Created by jiankai.wang on 2017/2/16.
  */
-public class ItemDecor extends RecyclerView.ItemDecoration {
+public class ItemDecor extends RecyclerView.ItemDecoration { //paint绘制
 
     //先执行ItemDecoration的onDraw()、再执行ItemView的onDraw()、再执行ItemDecoration的onDrawOver()。
     // 由于和RecyclerView使用的是同一个Canvas，所以你想在Canvas上画什么都可以，就像我们平时自定义View时写onDraw()方法一样

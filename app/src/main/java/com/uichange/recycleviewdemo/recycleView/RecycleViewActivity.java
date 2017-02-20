@@ -11,7 +11,7 @@ import com.uichange.recycleviewdemo.base.TopBaseActivity;
 import com.uichange.recycleviewdemo.utils.ActivityUtils;
 
 public class RecycleViewActivity extends TopBaseActivity {
-    private Button btn_v_listview,btn_h_listview,btn_gridview,btn_staggered,btn_staggered_volley;
+    private Button btn_v_listview,btn_h_listview,btn_gridview,btn_staggered,btn_staggered_volley,btn_switch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +50,14 @@ public class RecycleViewActivity extends TopBaseActivity {
         btn_gridview= (Button) view.findViewById(R.id.btn_gridview);
         btn_staggered= (Button) view.findViewById(R.id.btn_staggered);
         btn_staggered_volley= (Button) view.findViewById(R.id.btn_staggered_volley);
+        btn_switch= (Button) view.findViewById(R.id.btn_switch);
 
         btn_v_listview.setOnClickListener(new Btn_clickLis());
         btn_h_listview.setOnClickListener(new Btn_clickLis());
         btn_gridview.setOnClickListener(new Btn_clickLis());
         btn_staggered.setOnClickListener(new Btn_clickLis());
         btn_staggered_volley.setOnClickListener(new Btn_clickLis());
+        btn_switch.setOnClickListener(new Btn_clickLis());
     }
 
     private class Btn_clickLis implements View.OnClickListener{
@@ -85,6 +87,9 @@ public class RecycleViewActivity extends TopBaseActivity {
                     intent0.putExtra("Staggered_flag",0);    //0-网络请求
                     startActivity(intent0);
                     overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+                    break;
+                case R.id.btn_switch:
+                    ActivityUtils.startActivity(RecycleViewActivity.this,SwitchActivity.class);
                     break;
             }
         }

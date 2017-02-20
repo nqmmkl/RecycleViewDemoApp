@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.uichange.recycleviewdemo.R;
 import com.uichange.recycleviewdemo.base.TopBaseActivity;
 import com.uichange.recycleviewdemo.javabean.SampleShow;
+import com.uichange.recycleviewdemo.recycleView.ItemDecoration.ItemDecor_grid;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.List;
 public class Grid_Activity extends TopBaseActivity {
     private RecyclerView grid_recycleview;
     private List<SampleShow> grid_list;
+    private GridAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,9 @@ public class Grid_Activity extends TopBaseActivity {
         GridLayoutManager gridLayoutManager=new GridLayoutManager(this,3);
         grid_recycleview.setLayoutManager(gridLayoutManager);
 
-        GridAdapter adapter=new GridAdapter();
+        grid_recycleview.addItemDecoration(new ItemDecor_grid(this));
+
+        adapter=new GridAdapter();
         grid_recycleview.setAdapter(adapter);
     }
 
@@ -42,7 +46,7 @@ public class Grid_Activity extends TopBaseActivity {
 
     @Override
     public String setCenterText() {
-        return null;
+        return "网格布局";
     }
 
     @Override
@@ -90,10 +94,25 @@ public class Grid_Activity extends TopBaseActivity {
         }
 
         @Override
-        public void onBindViewHolder(MyViewHolder holder, int position) {
+        public void onBindViewHolder(MyViewHolder holder, final int position) {
             SampleShow sampleShow=grid_list.get(position);
             holder.grid_img.setBackgroundResource(sampleShow.getResId());
             holder.grid_text.setText(sampleShow.getTextShow());
+
+            holder.grid_img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    addData(position);
+                }
+            });
+
+            holder.grid_img.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    removeData(position);
+                    return true;
+                }
+            });
 
         }
 
@@ -112,5 +131,20 @@ public class Grid_Activity extends TopBaseActivity {
                 grid_text= (TextView) itemView.findViewById(R.id.grid_text);
             }
         }
+    }
+
+    public void addData(int position){
+        SampleShow sample=new SampleShow(R.drawable.buchiyu,"王建凯");
+        grid_list.add(position,sample);
+        adapter.notifyItemInserted(position);
+        adapter.notifyItemRangeChanged(position,grid_list.size());
+    }
+
+    public void removeData(int position){
+        SampleShow sample=new SampleShow(R.drawable.buchiyu,"王建凯");
+        grid_list.remove(position);
+        adapter.notifyItemRemoved(position);
+        adapter.notifyItemRangeChanged(position,grid_list.size());
+
     }
 }
