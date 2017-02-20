@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/gray"
-    android:padding="@dimen/px_15">
+    android:padding="@dimen/px_5">
 
     <ImageView
         android:id="@+id/linear_v_img"
@@ -13,6 +13,8 @@
         android:layout_height="@dimen/px_138"
         android:background="@drawable/pic_default"
         android:layout_gravity="center_vertical"
+        android:layout_marginTop="@dimen/px_10"
+        android:layout_marginBottom="@dimen/px_10"
         android:layout_marginLeft="@dimen/px_15"/>
     <TextView
         android:id="@+id/linear_v_text"

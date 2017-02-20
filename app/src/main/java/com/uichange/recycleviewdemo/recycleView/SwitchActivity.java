@@ -142,13 +142,28 @@ public class SwitchActivity extends TopBaseActivity {
         }
 
         @Override
-        public void onBindViewHolder(MyViewHolder holder, int position) {
+        public void onBindViewHolder(MyViewHolder holder, final int position) {
             SampleShow sampleShow=lists.get(position);
             ViewGroup.LayoutParams params=new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             holder.linear_v_ll.setLayoutParams(params);
 
             holder.linear_v_img.setImageResource(sampleShow.getResId());
             holder.linear_v_text.setText(sampleShow.getTextShow());
+
+            holder.linear_v_img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    addData(position);
+                }
+            });
+
+            holder.linear_v_img.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    removeData(position);
+                    return true;
+                }
+            });
 
         }
 
@@ -169,5 +184,20 @@ public class SwitchActivity extends TopBaseActivity {
                 linear_v_text= (TextView) itemView.findViewById(R.id.linear_v_text);
             }
         }
+    }
+
+    public void addData(int position){
+        SampleShow sample=new SampleShow(R.drawable.buchiyu,"王建凯");
+        lists.add(position,sample);
+        adapter.notifyItemInserted(position);
+        adapter.notifyItemRangeChanged(position,lists.size());
+    }
+
+    public void removeData(int position){
+        SampleShow sample=new SampleShow(R.drawable.buchiyu,"王建凯");
+        lists.remove(position);
+        adapter.notifyItemRemoved(position);
+        adapter.notifyItemRangeChanged(position,lists.size());
+
     }
 }
