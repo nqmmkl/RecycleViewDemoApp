@@ -23,7 +23,10 @@
         <activity android:name=".recycleView.Linear_H_Activity" />
         <activity android:name=".recycleView.Grid_Activity" />
         <activity android:name=".recycleView.Staggered_Activity" />
-        <activity android:name=".recycleView.SwitchActivity"></activity>
+        <activity android:name=".recycleView.SwitchActivity" />
+        <activity android:name=".xRecycleView.XLinear_V_Activity" />
+        <activity android:name=".MaterialDesign.SwipeRefreshLayout.MLinear_V_Activity" />
+        <activity android:name=".bossCustom.BossRecycleActivity"></activity>
     </application>
 
 </manifest>
