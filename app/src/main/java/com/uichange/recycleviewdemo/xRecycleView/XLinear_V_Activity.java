@@ -70,8 +70,7 @@ public class XLinear_V_Activity extends TopBaseActivity {
 
 
         xlinear_v_recyclrView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
-        xlinear_v_recyclrView.setLaodingMoreProgressStyle(ProgressStyle.SquareSpin);
-//        xlinear_v_recyclrView.setArrowImageView(R.drawable.buchiyu);
+        xlinear_v_recyclrView.setArrowImageView(R.drawable.arrow);
 
 
 
