@@ -113,7 +113,6 @@ public class ArrowRefreshHeader extends LinearLayout implements BaseRefreshHeade
 			mArrowImageView.clearAnimation();
 			mArrowImageView.setVisibility(View.INVISIBLE);
 //			mProgressBar.setVisibility(View.VISIBLE);
-
             head_progressBar.setVisibility(View.VISIBLE);
 
 

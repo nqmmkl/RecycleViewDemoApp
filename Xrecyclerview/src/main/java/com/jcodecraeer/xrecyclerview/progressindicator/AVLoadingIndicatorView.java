@@ -41,6 +41,7 @@ import com.jcodecraeer.xrecyclerview.progressindicator.indicator.PacmanIndicator
 import com.jcodecraeer.xrecyclerview.progressindicator.indicator.SemiCircleSpinIndicator;
 import com.jcodecraeer.xrecyclerview.progressindicator.indicator.SquareSpinIndicator;
 import com.jcodecraeer.xrecyclerview.progressindicator.indicator.TriangleSkewSpinIndicator;
+import com.jcodecraeer.xrecyclerview.progressindicator.indicator.WjkIndicator;
 
 
 /**
@@ -285,6 +286,11 @@ public class AVLoadingIndicatorView extends View{
             case SemiCircleSpin:
                 mIndicatorController=new SemiCircleSpinIndicator();
                 break;
+            case 28:
+                mIndicatorController=new WjkIndicator();
+
+                break;
+
         }
         mIndicatorController.setTarget(this);
     }
